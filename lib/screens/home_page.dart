@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_widgets.dart';
 import '../theme/theme.dart';
 import 'breach_results_page.dart';
-import 'package:crypto/crypto.dart';
-import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,8 +28,7 @@ class _HomePageState extends State<HomePage> {
     try {
       // Call placeholder cloud function; backend to implement
       final call = FirebaseFunctions.instance.httpsCallable('checkBreach');
-      final String query = _query.text.trim();
-      final resp = await call.call(<String, dynamic>{'query': query});
+      final resp = await call.call(<String, dynamic>{'query': _query.text.trim()});
       final List data = resp.data as List? ?? [];
       _results = data.cast<Map<String, dynamic>>();
 
@@ -42,11 +39,9 @@ class _HomePageState extends State<HomePage> {
           .doc(uid)
           .collection('history');
       final now = DateTime.now();
-      final String queryHash = sha256.convert(utf8.encode(query)).toString();
       for (final item in _results) {
         await userHistory.add({
-          // Store only a hash of the query for privacy
-          'queryHash': queryHash,
+          'query': _query.text.trim(),
           'source': item['source'],
           'date': item['date'] ?? now.toIso8601String(),
           'type': item['type'],
@@ -59,7 +54,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => BreachResultsPage(query: query, results: _results),
+          builder: (_) => BreachResultsPage(query: _query.text.trim(), results: _results),
         ),
       );
     } catch (e) {

@@ -1,4 +1,4 @@
-package om.example.leakpeek
+package com.example.leakpeek
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "567122403565",
-    "project_id": "leakpeek-a549f",
-    "storage_bucket": "leakpeek-a549f.firebasestorage.app"
+    "project_number": "994802040839",
+    "project_id": "leakpeek-70cfb",
+    "storage_bucket": "leakpeek-70cfb.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:567122403565:android:442e961b7cce54edc86ce4",
+        "mobilesdk_app_id": "1:994802040839:android:d5acde3556fb1ac65f6aa2",
         "android_client_info": {
-          "package_name": "om.example.leakpeek"
+          "package_name": "com.leakpeek.app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCEiXyaaNdkscmrXGxobTFIjM6mISDUjio"
+          "current_key": "AIzaSyCyeJBz6NIddZOoAVm3bKj34r2iAKF5n9Q"
         }
       ],
       "services": {
