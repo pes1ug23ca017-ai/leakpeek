@@ -11,12 +11,13 @@ ThemeData buildLeakPeekTheme() {
     primary: kPrimary,
     secondary: kSecondary,
     surface: Colors.white,
-    background: kBackground,
     brightness: Brightness.light,
   );
 
   return ThemeData(
     colorScheme: scheme,
+    // 'background' is deprecated in Material 3; prefer surface and use
+    // scaffoldBackgroundColor directly.
     scaffoldBackgroundColor: kBackground,
     appBarTheme: AppBarTheme(
       backgroundColor: kPrimary,
@@ -36,7 +37,7 @@ ThemeData buildLeakPeekTheme() {
       fillColor: Colors.white,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: kSecondary.withOpacity(0.2)),
+        borderSide: BorderSide(color: kSecondary.withValues(alpha: 0.2)),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
