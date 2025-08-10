@@ -1,3 +1,7 @@
+plugins {
+    // Google Services Gradle plugin (for processing google-services.json)
+    id("com.google.gms.google-services") version "4.4.3" apply false
+}
 allprojects {
     repositories {
         google()
