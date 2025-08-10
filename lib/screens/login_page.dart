@@ -25,6 +25,14 @@ class _LoginPageState extends State<LoginPage> {
         email: _email.text.trim(),
         password: _password.text,
       );
+      if (mounted) {
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null && user.emailVerified) {
+          Navigator.pushReplacementNamed(context, '/home');
+        } else {
+          Navigator.pushReplacementNamed(context, '/verify');
+        }
+      }
     } on FirebaseAuthException catch (e) {
       setState(() => _error = e.message);
     } finally {

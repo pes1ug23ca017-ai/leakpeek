@@ -51,13 +51,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 12),
             PrimaryButton(label: 'BREACH', icon: Icons.search, onPressed: _loading ? null : _breach),
             const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.center,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text('Terms of Use'),
-              ),
-            ),
+            Align(alignment: Alignment.center, child: TextButton(onPressed: () => Navigator.pushNamed(context, '/settings'), child: const Text('Terms of Use'))),
             if (_loading) const LinearProgressIndicator(),
             if (_error != null) Text(_error!, style: const TextStyle(color: Colors.red)),
             const SizedBox(height: 8),

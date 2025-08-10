@@ -22,12 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateNext() {
     final bool isLoggedIn = FirebaseAuth.instance.currentUser != null;
-    final route = MaterialPageRoute(
-      builder: (_) => isLoggedIn
-          ? const _NextPlaceholder(title: 'Home (stub)')
-          : const _NextPlaceholder(title: 'Login (stub)'),
-    );
-    if (mounted) Navigator.of(context).pushReplacement(route);
+    if (!mounted) return;
+    Navigator.of(context).pushReplacementNamed(isLoggedIn ? '/home' : '/login');
   }
 
   @override
@@ -71,24 +67,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   ?.copyWith(color: kSecondary, letterSpacing: 0.5),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _NextPlaceholder extends StatelessWidget {
-  final String title;
-  const _NextPlaceholder({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(
-        child: Text(
-          '$title screen will be implemented next.',
-          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );
