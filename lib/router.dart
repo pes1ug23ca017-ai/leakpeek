@@ -9,6 +9,7 @@ import 'screens/community_page.dart';
 import 'screens/settings_page.dart';
 import 'screens/logout_page.dart';
 import 'screens/profile_page.dart';
+import 'screens/breach_results_page.dart';
 
 Map<String, WidgetBuilder> buildRoutes() => {
       '/login': (_) => const LoginPage(),
@@ -21,6 +22,8 @@ Map<String, WidgetBuilder> buildRoutes() => {
       '/settings': (_) => const SettingsPage(),
       '/logout': (_) => const LogoutPage(),
       '/profile': (_) => const ProfilePage(),
+      // Results route is typically pushed with arguments; adding a fallback placeholder
+      '/results': (ctx) => const BreachResultsPage(query: 'Unknown', results: []),
     };
 
 

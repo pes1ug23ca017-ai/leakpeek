@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_widgets.dart';
 import '../theme/theme.dart';
+import 'breach_results_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,6 +31,32 @@ class _HomePageState extends State<HomePage> {
       final resp = await call.call(<String, dynamic>{'query': _query.text.trim()});
       final List data = resp.data as List? ?? [];
       _results = data.cast<Map<String, dynamic>>();
+
+      // Write to user's history in Firestore
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      final userHistory = FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection('history');
+      final now = DateTime.now();
+      for (final item in _results) {
+        await userHistory.add({
+          'query': _query.text.trim(),
+          'source': item['source'],
+          'date': item['date'] ?? now.toIso8601String(),
+          'type': item['type'],
+          'breached': item['breached'] == true,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+
+      if (!mounted) return;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => BreachResultsPage(query: _query.text.trim(), results: _results),
+        ),
+      );
     } catch (e) {
       _error = e.toString();
     } finally {
