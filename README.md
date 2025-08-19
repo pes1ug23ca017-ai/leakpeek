@@ -1,26 +1,16 @@
-# LeakPeek
+# leakpeek
 
-Flutter + Firebase app scaffold with auth, breach check flow, Firestore history, and Firebase Functions stub.
+A new Flutter project.
 
-## Quick start (Web)
+## Getting Started
 
-```
-flutter pub get
-flutter run -d chrome
-```
+This project is a starting point for a Flutter application.
 
-## Connect to Firebase
+A few resources to get you started if this is your first Flutter project:
 
-1. Install Node.js and Firebase CLI: `npm i -g firebase-tools`
-2. Activate FlutterFire CLI: `dart pub global activate flutterfire_cli`
-3. Configure: `flutterfire configure --project=<your-project> --platforms=android,web --android-package-name=<your.package>`
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-## Local emulators (optional)
-
-- Toggle `useEmulators` in `lib/env.dart` to `true`
-- Run `firebase emulators:start`
-
-## Security
-
-- Firestore rules in `firestore.rules` restrict access per user
-- Queries are hashed (SHA-256) before being written to history
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

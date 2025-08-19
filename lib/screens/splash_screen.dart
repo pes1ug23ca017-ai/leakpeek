@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../theme/theme.dart';
 
@@ -12,23 +9,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  Timer? _timer;
-
   @override
   void initState() {
     super.initState();
-    _timer = Timer(const Duration(seconds: 3), _navigateNext);
-  }
-
-  void _navigateNext() {
-    final bool isLoggedIn = FirebaseAuth.instance.currentUser != null;
-    if (!mounted) return;
-    Navigator.of(context).pushReplacementNamed(isLoggedIn ? '/home' : '/login');
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
     super.dispose();
   }
 
@@ -53,24 +40,31 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 16),
             Text(
               'LEAKPEEK',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium
-                  ?.copyWith(color: kPrimary, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                color: kPrimary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
-              'SECURE YOUR DATA, YOUR SAFETY',
-              style: Theme.of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(color: kSecondary, letterSpacing: 0.5),
+              'YOUR DATA YOUR SAFETY',
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: kSecondary,
+                letterSpacing: 0.5,
+              ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/login');
+          },
+          child: Text('CONTINUE'),
         ),
       ),
     );
   }
 }
-
-
