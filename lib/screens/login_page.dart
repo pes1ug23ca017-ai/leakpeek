@@ -104,11 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: kPrimary,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Icon(
-                    Icons.lock,
-                    color: Colors.white,
-                    size: 50,
-                  ),
+                  child: const Icon(Icons.lock, color: Colors.white, size: 50),
                 ),
                 const SizedBox(height: 60),
                 // Error Message
